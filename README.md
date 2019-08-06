@@ -1,6 +1,7 @@
 # AngularTourOfHeroes
 
 #After the upgrade from 7 to 8 the “ng serve” command might not work. Run the following commands in the project folder to fix the issue.
+#This applies to scenario of upgrading from 8.1.3 to 8.2.0
 npm uninstall @angular-devkit/build-angular
 npm install @angular-devkit/build-angular
 
