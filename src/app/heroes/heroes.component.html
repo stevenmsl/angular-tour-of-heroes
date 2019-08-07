@@ -1,3 +1,14 @@
+<h2>My Heroes</h2>
+<ul class="heroes">
+    <!-- repeater directive -->
+    <!-- li is the host element -->
+    <!-- heroes holds the mock heroes list -->
+    <!-- hero holds the current hero object for each interation through the list -->
+    <li *ngFor="let hero of heroes" (click)="onSelect(hero)"> <!-- event binding syntax; listen for the <li> element's click event -->
+        <span class="badge">{{hero.id}}</span> {{hero.name}} 
+    </li>
+</ul>
+
 <!-- format with UppercasePipe-->
 <!--Use pipes to format strings, currency amounts, dates and other display data.-->
 <h2>{{hero.name | uppercase}} Details</h2> 
