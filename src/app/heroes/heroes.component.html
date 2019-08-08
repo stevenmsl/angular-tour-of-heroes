@@ -4,19 +4,24 @@
     <!-- li is the host element -->
     <!-- heroes holds the mock heroes list -->
     <!-- hero holds the current hero object for each interation through the list -->
-    <li *ngFor="let hero of heroes" (click)="onSelect(hero)"> <!-- event binding syntax; listen for the <li> element's click event -->
+    <li *ngFor="let hero of heroes" 
+    [class.selected]="hero === selectedHero"
+    (click)="onSelect(hero)"> <!-- event binding syntax; listen for the <li> element's click event -->
         <span class="badge">{{hero.id}}</span> {{hero.name}} 
     </li>
 </ul>
 
 <!-- format with UppercasePipe-->
 <!--Use pipes to format strings, currency amounts, dates and other display data.-->
-<h2>{{hero.name | uppercase}} Details</h2> 
-<div><span>id: </span>{{hero.id}}</div>
-<div>
-    <label>name:
-        <!-- [(ngModel)]  -->
-        <!-- Two way binding syntax -->
-        <input [(ngModel)]="hero.name" placeholder="name"/>
-    </label>
+
+<div *ngIf="selectedHero"> <!-- Remove the hero detail from the DOM if selectedHero is undefined. -->
+    <h2>{{selectedHero.name | uppercase}} Details</h2> 
+    <div><span>id: </span>{{selectedHero.id}}</div>
+    <div>
+        <label>name:
+            <!-- [(ngModel)]  -->
+            <!-- Two way binding syntax -->
+            <input [(ngModel)]="selectedHero.name" placeholder="name"/>
+        </label>
+    </div>
 </div>
