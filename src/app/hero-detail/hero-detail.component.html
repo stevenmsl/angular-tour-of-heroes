@@ -1,0 +1,14 @@
+<!-- format with UppercasePipe-->
+<!--Use pipes to format strings, currency amounts, dates and other display data.-->
+
+<div *ngIf="hero"> <!-- Remove the hero detail from the DOM if selectedHero is undefined. -->
+    <h2>{{hero.name | uppercase}} Details</h2> 
+    <div><span>id: </span>{{hero.id}}</div>
+    <div>
+        <label>name:
+            <!-- [(ngModel)]  -->
+            <!-- Two way binding syntax -->
+            <input [(ngModel)]="hero.name" placeholder="name"/>
+        </label>
+    </div>
+</div>

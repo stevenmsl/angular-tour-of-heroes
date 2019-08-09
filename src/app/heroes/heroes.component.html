@@ -10,18 +10,4 @@
         <span class="badge">{{hero.id}}</span> {{hero.name}} 
     </li>
 </ul>
-
-<!-- format with UppercasePipe-->
-<!--Use pipes to format strings, currency amounts, dates and other display data.-->
-
-<div *ngIf="selectedHero"> <!-- Remove the hero detail from the DOM if selectedHero is undefined. -->
-    <h2>{{selectedHero.name | uppercase}} Details</h2> 
-    <div><span>id: </span>{{selectedHero.id}}</div>
-    <div>
-        <label>name:
-            <!-- [(ngModel)]  -->
-            <!-- Two way binding syntax -->
-            <input [(ngModel)]="selectedHero.name" placeholder="name"/>
-        </label>
-    </div>
-</div>
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
