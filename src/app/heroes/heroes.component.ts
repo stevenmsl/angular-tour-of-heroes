@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
-import { HEROES } from '../mock-heroes';
+import { HeroService } from '../hero.service'; 
 
 //Specifies the Angular metadata for the component 
 @Component({
@@ -18,21 +18,26 @@ export class HeroesComponent implements OnInit {
     name : 'Windstorm'
   };
 
-  heroes = HEROES; //Expose the HEROES array for binding 
+  heroes : Hero[]; //Expose the HEROES array for binding 
 
   selectedHero: Hero;
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
   }
 
-  constructor() { }
+  getHeroes(): void {
+    this.heroService.getHeroes()
+        //the subscribe method passes the emitted array to the call back 
+        .subscribe(heroes => this.heroes = heroes);
+  }
+
+  constructor(private heroService: HeroService) {}
 
   /*
   A lifecycle hook. Angular calls this method shortly after creating a component.
   */
   ngOnInit() {
+    this.getHeroes();
   }
-
-
 
 }
