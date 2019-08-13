@@ -16,5 +16,10 @@ export class HeroService {
     this.messageService.add('HeroService: fetched heroes');
     return of(HEROES); //returns an Observable that emits a single value, the array of mock heroes 
   }
+  getHero(id: number): Observable<Hero> {
+    //use backticks ( ` ) to define a JavaScript template literal for embedding the id
+    this.messageService.add(`HeroService: fetched hero id=${id}`);
+    return of(HEROES.find(hero => hero.id === id));
+  }
 
 }

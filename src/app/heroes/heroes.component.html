@@ -4,10 +4,22 @@
     <!-- li is the host element -->
     <!-- heroes holds the mock heroes list -->
     <!-- hero holds the current hero object for each interation through the list -->
+
+    <!-- (click)="onSelect(hero)" -- event binding syntax; listen for the <li> element's click event -->
+    <!-- 
     <li *ngFor="let hero of heroes" 
     [class.selected]="hero === selectedHero"
-    (click)="onSelect(hero)"> <!-- event binding syntax; listen for the <li> element's click event -->
+    (click)="onSelect(hero)">
         <span class="badge">{{hero.id}}</span> {{hero.name}} 
     </li>
+     -->
+     <li *ngFor="let hero of heroes">
+         <a routerLink = "/detail/{{hero.id}}">
+            <span class="badge">{{hero.id}}</span> {{hero.name}} 
+         </a>
+     </li>
 </ul>
+
+<!--
 <app-hero-detail [hero]="selectedHero"></app-hero-detail>
+-->

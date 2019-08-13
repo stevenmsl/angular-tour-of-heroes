@@ -20,10 +20,12 @@ export class HeroesComponent implements OnInit {
 
   heroes : Hero[]; //Expose the HEROES array for binding 
 
+  /*
   selectedHero: Hero;
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
   }
+  */
 
   getHeroes(): void {
     this.heroService.getHeroes()
