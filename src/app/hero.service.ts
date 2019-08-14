@@ -11,6 +11,7 @@ import { catchError, map, tap } from 'rxjs/operators';
                      //a single, shared instance will be created and injected into any class that asks for it 
 })
 export class HeroService {
+
   //service-in-service: the MessageService is inject into the HeroService 
   //which is injected into the Heroes Component 
   constructor(
@@ -35,7 +36,10 @@ export class HeroService {
   }
 
   // :base/:collectionName 
-  private heroesUrl = 'api/heroes';
+  private heroesUrl = 'api/heroes'; //URL to web api
+  httpOptions = {
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
+  };
   getHeroes(): Observable<Hero[]> {
     /*
     An observable from HttpClient always emits a single value and then completes, never to emit again.
@@ -61,6 +65,17 @@ export class HeroService {
     );    
   }
 
+  /** PUT: update the hero on the server */
+  updateHero(hero: Hero): Observable<any> {
+    //heroes web API expects a special header in HTTP save requests
+    //this is done through options 
+    return this.http.put(this.heroesUrl, hero, this.httpOptions)
+      .pipe(
+        tap(_ => this.log(`updated hero id=${hero.id}`)),
+        catchError(this.handleError<any>('updateHero'))
+      );
+  }
+  
   /*
    Handle Http operation that failed.
    Let the app continue.
