@@ -23,11 +23,13 @@ export class HeroService {
     return of(HEROES); //returns an Observable that emits a single value, the array of mock heroes 
   }
   */
+  /*
   getHero(id: number): Observable<Hero> {
     //use backticks ( ` ) to define a JavaScript template literal for embedding the id
     this.messageService.add(`HeroService: fetched hero id=${id}`);
     return of(HEROES.find(hero => hero.id === id));
   }
+  */
   private log(message: string) {
     this.messageService.add(`HeroService: ${message}`);
   }
@@ -49,6 +51,14 @@ export class HeroService {
         catchError(this.handleError<Hero[]>('getHeroes', []))  
       );
     ;  
+  }
+
+  getHero(id: number): Observable<Hero> {
+    const url = `${this.heroesUrl}/${id}`;
+    return this.http.get<Hero>(url).pipe(
+      tap( _ => this.log(`fetched hero id=${id}`)),
+      catchError(this.handleError<Hero>(`getHero id=${id}`))  
+    );    
   }
 
   /*
