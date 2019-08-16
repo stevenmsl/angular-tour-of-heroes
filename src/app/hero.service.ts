@@ -65,6 +65,12 @@ export class HeroService {
     );    
   }
 
+   /** DELETE: delete the hero from the server */
+   deleteHero(hero: Hero | number): Observable<Hero> {
+      return null;  
+   }
+
+
   /** PUT: update the hero on the server */
   updateHero(hero: Hero): Observable<any> {
     //heroes web API expects a special header in HTTP save requests
