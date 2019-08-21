@@ -42,6 +42,13 @@ export class HeroesComponent implements OnInit {
       });    
   }
 
+  delete(hero: Hero): void {
+    //responsible for updating its own list of heroes
+    this.heroes = this.heroes.filter(h => h !== hero);
+    //an Observable does nothing until something subscribes
+    this.heroService.deleteHero(hero).subscribe(); 
+  }
+
   constructor(private heroService: HeroService) {}
 
   /*
